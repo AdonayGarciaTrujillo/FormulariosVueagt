@@ -20,6 +20,6 @@
 
 <style scoped>
   div {
-    margin: 0px;
+    margin: 0px 2rem;
   }
 </style>

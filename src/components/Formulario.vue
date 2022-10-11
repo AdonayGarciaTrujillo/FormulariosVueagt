@@ -1,4 +1,5 @@
 <script>
+
 export default{
     data: ()  => ({
         proyecto: "",
@@ -26,20 +27,41 @@ export default{
             //console.log(proyecto, campo);
             proyecto[campo] = !proyecto[campo];
         },
-    },
+       
     computed: {
         numeroProyectos() {
             return this.proyectos.length;
-        },
+        }
+    },
+        porcentaje() {
+                let completados = 0;
+            
+                this.proyectos.map( proyecto => {
+                    if (proyecto.completado)
+                    completados++;
+            })
+            return (completados * 100) / this.numeroProyectos;
+        }
     },       
 };
 </script>
 
 <template>
     <div class="row">
-        <div class="col-12 mb-4">
+        <div class="col-12 mb-6">
+            <h3 class="text-center">Progreso 0%</h3>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                role="progressbar"
+                aria-valuenow="25"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width: 50%">
+
+                </div>
+
+            </div>
             
-            <progress-bar :porcentaje="porcentaje"/>
         </div>
 
         <div class="col-12 col-md-12">
@@ -50,7 +72,7 @@ export default{
             <div class="mb-3">
                 
                 <label class="form-label"> Proyecto</label>
-                <input v-model="proyecto" type="text" class="form-control" required/>
+                <input v-model.trim="proyecto" type="text" class="form-control" required/>
             </div>
 
             <div class="mb-3">
@@ -103,6 +125,7 @@ export default{
         </table>
     </div>
     </div>   
-</div>    
+</div> 
+
 </template>
 
