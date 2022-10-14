@@ -36,7 +36,7 @@
             </div>
         <div class="col-12 col-md-8">
             <total-proyectos :numeroProyectos="numeroProyectos" :proyectos="proyectos" :cambiarEstado="cambiarEstado"
-            :limpiarData="limpiarData"/>
+            :limpiarData="limpiarData" :borrarproyectos="borrarproyectos" />
         </div>  
         
     </div>>
@@ -63,6 +63,7 @@
                     this.proyectos.push(proyecto);
 
                     this.saveData();
+                    
 
             
                     this.proyecto = "";
@@ -82,6 +83,16 @@
                     this.proyectos = [];
                     localStorage.clear();
                 
+                },
+                deleteData() {
+                    this.proyectos = [];
+                 localStorage.clear();
+                },
+
+                borrarproyectos(index) { 
+                    this.proyectos.splice(index,1); 
+                    localStorage.clear();
+                    this.saveData();
                 },
  
             },
@@ -104,7 +115,7 @@
                 ProgressBar, 
                 TotalProyectos },
             mounted() {
-                this.proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
+                this.proyectos =JSON.parse( localStorage.getItem("proyectos")) || [];
             },       
         };
     </script>

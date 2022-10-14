@@ -16,6 +16,7 @@
                         <th>Tipo</th>
                         <th>Urgente</th>
                         <th>Completado</th>
+                        <th>Borrar</th>
                     </tr>
                 </thead>
 
@@ -26,6 +27,7 @@
                         <td>{{ proyecto.tipo }}</td>
                         <td @click="cambiarEstado(proyecto, 'urgente')"  :class="proyecto.urgente ? 'bg-success' : 'bg-danger'">{{ proyecto.urgente ? "Si"  :  "NO" }}</td>
                         <td @click="cambiarEstado(proyecto, 'completado')"  :class="proyecto.completado ? 'bg-success' : 'bg-danger'">{{ proyecto.completado ? "Completo "  :  "Incompleto" }}</td>
+                        <td @click="borrarproyectos('borrar')" class="bg-warning" > Borrar </td>
 
                     </tr>
                 </tbody>
@@ -35,8 +37,6 @@
 
 <script>
     export default {
-        props: ['numeroProyectos', 'proyectos', 'cambiarEstado', 'limpiarData'],
-
-         
+        props: ['numeroProyectos', 'proyectos', 'cambiarEstado', 'limpiarData', 'borrarproyectos'],
     };
 </script>
